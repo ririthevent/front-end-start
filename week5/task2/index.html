@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <title>박스오피스</title>
+</head>
+<body>
+<script src="task2_json.js"></script>
+<script src="tmpl.js"></script>
+<script>
+  var url = 'https://apis.daum.net/search/web?apikey=8fb3afd720609e3fb1001fca794a9b1d&q=제주대&output=json';
+  getJSON(url , function(list){
+    console.log(list);
+
+//    var template = document.getElementById('movieTemplate').innerHTML;
+//    var wrap = document.getElementById('wrap');
+//    var str = '';
+//    for(var i=0; i<=list.data.length; i++){
+//        str += tmpl(template, {movie :  list.data[i]});
+//    }
+//    wrap.innerHTML = str;
+
+ });
+</script>
+</body>
+</html>

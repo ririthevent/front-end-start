@@ -22,7 +22,7 @@
     var template = document.getElementById('movieTemplate').innerHTML;
     var wrap = document.getElementById('wrap');
     var str = '';
-    for(var i=0; i<=list.data.length; i++){
+    for(var i=0; i<list.data.length; i++){
         str += tmpl(template, {movie :  list.data[i]});
     }
     wrap.innerHTML = str;
