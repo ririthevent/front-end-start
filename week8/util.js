@@ -1,0 +1,80 @@
+function renderTodos(todos){
+
+  var $listDom = $('#todoList');
+  var todoTemplateHtml = $('#todoTemplate').html();
+  $listDom.html( tmpl(todoTemplateHtml, {todos:todos} ));
+
+
+}
+
+
+function addTodo(event) {
+
+  console.log('todoStringField keyup!');
+
+  var $field = $(event.currentTarget);
+  var fieldValue = $field.val();
+  //엔터키가 아니면 함수 중지
+  if (event.keyCode !== 13 || fieldValue === "") {
+	
+	return false;
+    //event.stopPropagation(); //이벤트 전파중지
+    //return;
+  }
+
+  var newTodo = fieldValue;
+
+  $field.val('');
+
+  var todo = $.extend(Todo.model, {
+	  id : new Date().getTime(),
+	  title : fieldValue
+  });
+
+  var todos = [];
+
+  todos.push(todo);
+
+  renderTodos(todos);
+
+  console.log('new todo.model : ', todo);
+ 
+
+  saveData(todos);
+}
+
+function checkDelete(event) {
+  return function(html){
+	if(!confirm('정말 삭제하나용? ')){
+		return;
+	}
+	console.log('delete');
+
+	var $deleteBtn = $(event.target);
+
+	var id = $deleteBtn.parent().attr('data-id');
+
+	//todos.remove(todo);
+
+	for(var i=0; i< todos.length; i++){
+		if(todos[i].id === id){
+			console.log('find');
+			
+			break;
+		}
+	}
+	saveData( html );
+  } 
+}
+
+
+
+function loadData() {
+  console.log('loadData()');
+  return JSON.parse(localStorage.getItem('todos'));
+}
+function saveData(todos) {
+  var $listDom = $('#todoList');
+  console.log('saveData()');
+  localStorage.setItem('todos', JSON.stringify(todos));
+}

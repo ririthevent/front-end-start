@@ -1,0 +1,7 @@
+var $listDom = $('#todoList');
+
+var view = {
+	render : function(){
+
+	}
+};
